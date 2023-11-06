@@ -1,0 +1,52 @@
+/* CSS for styling the body */
+body {
+    background-color: #000;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* CSS for styling the titles */
+.title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Replace with your preferred font-family */
+    font-size: 40px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold */
+    color: white; /* Set the text color to white */
+    text-transform: uppercase; /* Convert text to uppercase for a cooler effect */
+    margin: 20px auto; /* Center horizontally by setting left and right margins to "auto" */
+    text-align: center; /* Center text within its container */
+}
+
+/* CSS for styling the past days list */
+.past-days-list {
+    padding: 0px; /* Remove default padding */
+}
+
+/* Style calendar entries */
+.calendar-entry {
+    color: white;
+    font-size: 16px; /* Adjust the font size for list items */
+    margin-bottom: 10px; /* Add space between list items */
+    font-weight: bold; /* Make the text bold */
+    font-size: 20px; /* Increase font size */
+    padding-left: 30px; /* Add left padding to create space for the trash can icon */
+    background-image: url('trash.png'); /* Set the background image to trash.png */
+    background-size: 20px 20px; /* Adjust the image size as needed */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: left center; /* Position the image on the left center */
+    line-height: 30px; /* Adjust the line height to vertically center the image */
+    cursor: pointer; /* Add a pointer cursor to indicate interactivity */
+}
+
+.past-days-list li {
+    list-style-type: none;
+}
+
+/* Style the date in red */
+.date-red {
+    color: red;
+}
+
+/* Style the time in green */
+.date-green {
+    color: green;
+}

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar</title>
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'calendar.css' %}">
+</head>
+<body>
+    <div class="topnav">
+        <a href="index.html"><img src="{% static 'ytog.png' %}" alt="Home"></a> <!-- Image button for Home -->
+        <div class="nav-right">
+            <a href="stopwatch.html"><img src="{% static 'stopwatch.png' %}" alt="Stopwatch"></a> <!-- Image button for Stopwatch, linking to stopwatch.html -->
+            <a href="person.html"><img src="{% static 'person.png' %}" alt="Person"></a> <!-- Image button for Person, linking to person.html -->
+        </div>
+    </div>
+
+    <div class="calendar-container">
+        <h1 class="title">Stopwatch History</h1>
+        <ul class="past-days-list">
+            <ul id="calendar-list">
+                {% for entry in calendar_entries %}
+                    <li class="calendar-entry">
+                        <a href="{% url 'calendar-entry-detail' entry.id %}">{{ entry.date }}, Total: {{ entry.total_time }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </ul>
+    </div>
+
+    <script>
+        // JavaScript code to delete the time when a calendar entry is clicked
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarList = document.getElementById('calendar-list');
+
+            // Attach a click event listener to the calendar entries
+            calendarList.addEventListener('click', function (event) {
+                if (event.target.classList.contains('calendar-entry')) {
+                    // Remove the clicked calendar entry
+                    event.target.remove();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

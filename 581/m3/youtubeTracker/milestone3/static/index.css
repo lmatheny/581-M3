@@ -1,0 +1,36 @@
+body {
+    background-color: #000;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+/* CSS for styling the timer container */
+/* CSS for styling the timer container */
+.timer-container {
+   color: #000;
+   font-size: 17px;
+    text-align: center; /* Center the content horizontally */
+    background-color: #f2f2f2; /* Light grey background color */
+    padding: 10px; /* Add some padding for spacing */
+    font-weight: bold; /* Make the text bold */
+    font-family: 'Your Cool Font', sans-serif; /* Replace 'Your Cool Font' with your preferred font */
+}
+
+/* Add this CSS in your CSS file or inline style */
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-content: center;
+    margin-top: 5px;
+}
+.video-thumbnail {
+    width: 98%;
+    height: 100%;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+

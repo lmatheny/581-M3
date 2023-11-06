@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New Day</title>
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'newDay.css' %}">
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="home.html"><img src="{% static 'ytog.png' %}" alt="Home"></a> <!-- Image button for Home -->
+        <div class="nav-right">
+            <a href="stopwatch.html"><img src="{% static 'stopwatch.png' %}" alt="Stopwatch"></a>
+            <!-- Image button for Stopwatch, linking to stopwatch.html -->
+            <a href="person.html"><img src="{% static 'person.png' %}" alt="Person"></a>
+            <!-- Image button for Person, linking to person.html -->
+        </div>
+    </div>
+
+    <div class="form-container">
+        <h2 class="new-day-text">Start a New Day</h2>
+        <form method="post" id="newDayForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="timeGoals">Time Goal for the Day:</label>
+                <div class="slider-container">
+                    <input type="range" id="hours" name="hours" min="0" max="23" value="0" class="slider">
+                    <span id="hoursLabel">0 hours</span>
+                    <input type="range" id="minutes" name="minutes" min="0" max="59" value="0" class="slider">
+                    <span id="minutesLabel">0 minutes</span>
+                </div>
+            </div>
+
+            <!-- Hidden input fields for hours and minutes -->
+            <input type="hidden" id="hiddenHours" name="hiddenHours" value="0">
+            <input type="hidden" id="hiddenMinutes" name="hiddenMinutes" value="0">
+            <input type="submit" value="Create">
+        </form>
+        
+    </div>
+    <!-- JavaScript to update slider values -->
+    <script>
+        const hoursSlider = document.getElementById("hours");
+        const hoursLabel = document.getElementById("hoursLabel");
+        const minutesSlider = document.getElementById("minutes");
+        const minutesLabel = document.getElementById("minutesLabel");
+        const hiddenHoursInput = document.getElementById("hiddenHours");
+        const hiddenMinutesInput = document.getElementById("hiddenMinutes");
+        const newDayForm = document.getElementById("newDayForm");
+
+        hoursSlider.addEventListener("input", () => {
+            hoursLabel.textContent = hoursSlider.value + " hours";
+            hiddenHoursInput.value = hoursSlider.value;
+        });
+
+        minutesSlider.addEventListener("input", () => {
+            minutesLabel.textContent = minutesSlider.value + " minutes";
+            hiddenMinutesInput.value = minutesSlider.value;
+        });
+
+        // Add an event listener to the form's submit button
+        newDayForm.addEventListener("submit", (event) => {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Submit the form manually
+            newDayForm.submit();
+        });
+    </script>
+
+</body>
+
+</html>

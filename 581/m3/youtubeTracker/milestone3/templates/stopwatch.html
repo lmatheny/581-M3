@@ -1,0 +1,102 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'stopwatch.css' %}">
+    <style>
+        /* CSS to center the text under the images */
+        .element {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+  <div class="topnav">
+    <a href="home.html"><img src="{% static 'ytog.png' %}" alt="Home"></a> <!-- Image button for Home -->
+    <div class="nav-right">
+        <a href="stopwatch.html"><img src="{% static 'stopwatch.png' %}" alt="Stopwatch"></a> <!-- Image button for Stopwatch, linking to stopwatch.html -->
+        <a href="person.html"><img src="{% static 'person.png' %}" alt="Person"></a> <!-- Image button for Person, linking to person.html -->
+    </div>
+</div>
+
+      <h1>Work Timer</h1>
+
+<div class="additional-elements">
+    <div class="element">
+        <a href="newDay.html"><img src="{% static 'plus.png' %}" alt="Plus Icon"></a> <!-- Image button for New Day, linking to newDay.html -->
+        <p>Create a New Day</p>
+    </div>
+    <div class="element">
+        <a href="calendar.html"><img src="{% static 'cal.png' %}"alt="Calendar Icon"></a> <!-- Image button for Calendar, linking to calendar.html -->
+        <p>View Calendar</p>
+    </div>
+</div>
+
+<div class="stopwatch-container">
+    <div class="stopwatch">
+        <span id="display">00:00:00</span>
+        <button id="startStop" onclick="startStop()">Start</button>
+        <button id="reset" onclick="reset()">Reset</button>
+    </div>
+</div>
+
+<script>
+    // Initialize variables
+    let isRunning = false;
+    let interval;
+    let seconds = 0;
+    let minutes = 0;
+    let hours = 0;
+  
+    // Function to update the display
+    function updateDisplay() {
+      document.getElementById("display").textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+  
+    // Function to start or pause the timer
+    function startStop() {
+      const startStopButton = document.getElementById("startStop");
+  
+      if (isRunning) {
+        clearInterval(interval);
+        isRunning = false;
+        startStopButton.textContent = "Start";
+        startStopButton.style.backgroundColor = "#4CAF50"; // Change button color back to green
+      } else {
+        interval = setInterval(function () {
+          seconds++;
+          if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes === 60) {
+              minutes = 0;
+              hours++;
+            }
+          }
+          updateDisplay();
+        }, 1000);
+        isRunning = true;
+        startStopButton.textContent = "Stop";
+        startStopButton.style.backgroundColor = "#FF5733"; // Change button color to red
+      }
+    }
+  
+    // Function to reset the timer
+    function reset() {
+      clearInterval(interval);
+      isRunning = false;
+      seconds = 0;
+      minutes = 0;
+      hours = 0;
+      updateDisplay();
+      document.getElementById("startStop").textContent = "Start";
+      document.getElementById("startStop").style.backgroundColor = "#4CAF50"; // Reset button color to green
+    }
+</script>
+
+</body>
+</html>
